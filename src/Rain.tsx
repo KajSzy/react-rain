@@ -1,20 +1,39 @@
 import * as React from "react";
 import FallDown from "./FallDown";
 
-const emojis = ["🤑", "💸", "💵", "💲"];
+const emojis = ["🤑", "💸", "💵", "💲", "🧠"];
 
 const getOneOfEmojis = () => {
-  const index = Math.floor(Math.random() * emojis.length) + 0;
+  const index = getRandomInt(0, emojis.length);
   return emojis[index];
 };
 
-export default function() {
-  const position = {
-    x: Math.floor(Math.random() * window.innerWidth) + 0,
-    y: Math.floor((Math.random() * window.innerHeight) / 2) + 0
-  };
+const getRandomInt = (min = 0, max: number): number => Math.floor(Math.random() * max) + min;
+
+export default function () {
+  const [position, setPosition] = React.useState<[number, number]>(rerollPos());
+  const fallingDownTime = React.useRef((Math.random() * 6) + 2);
+
+
+  React.useEffect(() => {
+    window.setInterval(() => {
+      setPosition(rerollPos());
+    }, fallingDownTime.current * 1000);
+  }, []);
+
+  function rerollPos(): [number, number] {
+    const x = getRandomInt(15, document.body.getBoundingClientRect().width - 15);
+    const y = getRandomInt(-10, -150);
+    return [x, y];
+  }
   return (
-    <FallDown style={{ top: position.y, left: position.x }}>
+    <FallDown
+      speed={fallingDownTime.current}
+      style={{
+        left: position[0],
+        top: position[1],
+      }}
+    >
       {getOneOfEmojis()}
     </FallDown>
   );
