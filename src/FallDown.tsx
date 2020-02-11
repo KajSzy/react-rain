@@ -1,7 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
 
-const windowHeight = window.innerHeight;
-
 const falldown = keyframes`
   0%{
     opacity: 0;
@@ -12,12 +10,12 @@ const falldown = keyframes`
     opacity: 1;
   }
   95%{
-    transform: translateY(${windowHeight - 5}px) rotate(360deg);
+    transform: translateY(${window.innerHeight - 5}px) rotate(360deg);
     opacity: 1;
   }
   100%{
     opacity: 0;
-    transform : translateY(${windowHeight}px) rotate(360deg);
+    transform : translateY(${window.innerHeight}px) rotate(360deg);
   }
 `;
 
@@ -25,6 +23,7 @@ const falldown = keyframes`
 type FallDownProps = {
   speed: number;
 }
+
 const animation = (speed: FallDownProps['speed']) => css`
   animation: ${falldown};
   animation-duration: ${`${speed}s`};
@@ -32,7 +31,7 @@ const animation = (speed: FallDownProps['speed']) => css`
   animation-timing-function: linear;
 `;
 
-export default styled.div<FallDownProps>`
+export const FallDown = styled.div<FallDownProps>`
   ${props => animation(props.speed)};
   position: absolute;
   user-select: none;

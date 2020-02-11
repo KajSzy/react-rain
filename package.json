@@ -1,35 +1,40 @@
 {
   "name": "react-rain",
-  "version": "1.0.0",
-  "description": "React and TypeScript example starter project",
+  "version": "0.1.0",
+  "description": "React component imitating rain of UNICODE",
   "keywords": [
     "typescript",
-    "react",
-    "starter"
+    "react"
   ],
-  "main": "src/index.tsx",
-  "dependencies": {
-    "@types/styled-components": "4.4.2",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "typings": "dist/index.d.ts",
+  "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
-    "styled-components": "5.0.0"
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^3.0.0",
     "@types/react": "16.9.19",
     "@types/react-dom": "16.9.5",
-    "typescript": "3.7.5"
+    "@types/styled-components": "^4.4.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.31.0",
+    "rollup-plugin-delete": "^1.2.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "styled-components": "^5.0.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w",
+    "start": "cd pages && npm start"
+  }
 }

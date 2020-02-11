@@ -1,19 +1,22 @@
 import * as React from "react";
-import FallDown from "./FallDown";
+import { FallDown } from "./FallDown";
 
-const emojis = ["🤑", "💸", "💵", "💲", "🧠"];
+interface RainParams {
+  emojis?: string[];
+}
 
-const getOneOfEmojis = () => {
-  const index = getRandomInt(0, emojis.length);
-  return emojis[index];
-};
+const defaultEmojis = ["🤑", "💸", "💵", "💲"];
 
 const getRandomInt = (min = 0, max: number): number => Math.floor(Math.random() * max) + min;
 
-export default function () {
+const Rain: React.FC<RainParams> = ({ emojis = defaultEmojis }) => {
   const [position, setPosition] = React.useState<[number, number]>(rerollPos());
   const fallingDownTime = React.useRef((Math.random() * 6) + 2);
 
+  const getOneOfEmojis = () => {
+    const index = getRandomInt(0, emojis.length);
+    return emojis[index];
+  };
 
   React.useEffect(() => {
     window.setInterval(() => {
@@ -38,3 +41,5 @@ export default function () {
     </FallDown>
   );
 }
+
+export default Rain;
