@@ -3,7 +3,7 @@ import typescript from 'rollup-plugin-typescript2';
 import del from 'rollup-plugin-delete';
 import pkg from './package.json';
 
-const githubPagesDir = 'ghpages';
+const githubPagesDir = 'pages';
 
 export default {
     input: 'src/index.ts',
